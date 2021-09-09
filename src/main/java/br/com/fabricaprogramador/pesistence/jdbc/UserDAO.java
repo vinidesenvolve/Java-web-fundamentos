@@ -2,6 +2,7 @@ package br.com.fabricaprogramador.pesistence.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import br.com.fabricaprogramador.pesistence.entity.User;
@@ -46,7 +47,7 @@ public class UserDAO {
         }
     }
 
-    public void delete(Integer id){
+    public void delete(Integer id) {
         String sql = "delete from users where id=?";
 
         try {
@@ -60,5 +61,32 @@ public class UserDAO {
         } catch (SQLException e) {
               e.printStackTrace();
         }
+    }
+
+    public User findById(Integer id) {
+        String sql = "select * from users where id=?";
+
+        try {
+            PreparedStatement statement = con.prepareStatement(sql);
+
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+
+            if(result.next()) {
+                User user = new User();
+                user.setId(result.getInt("id"));
+                user.setName(result.getString("name"));
+                user.setLogin(result.getString("login"));
+                user.setPassword(result.getString("password"));
+
+                return user;
+            }
+
+            statement.close();
+        } catch (SQLException e) {
+              e.printStackTrace();
+        }
+
+        return null;
     }
 }
