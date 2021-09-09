@@ -1,4 +1,4 @@
-package br.com.fabricaprogramador.entity;
+package br.com.fabricaprogramador.pesistence.entity;
 
 public class User {
     
