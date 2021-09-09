@@ -100,7 +100,7 @@ public class UserDAO {
 
       while (result.next()) {
         User user = new User();
-        
+
         user.setId(result.getInt("id"));
         user.setName(result.getString("name"));
         user.setLogin(result.getString("login"));
