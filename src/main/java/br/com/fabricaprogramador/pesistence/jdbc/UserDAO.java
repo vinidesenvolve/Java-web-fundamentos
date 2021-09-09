@@ -12,6 +12,34 @@ public class UserDAO {
 
   private Connection con = ConnectionFactory.getConnection();
 
+  public User auth(User userAuth) {
+    String sql = "select * from users where login=? and password=?";
+
+    try {
+      PreparedStatement statement = con.prepareStatement(sql);
+
+      statement.setString(1, userAuth.getLogin());
+      statement.setString(2, userAuth.getPassword());
+
+      ResultSet result = statement.executeQuery();
+
+      if (result.next()) {
+        User user = new User();
+
+        user.setId(result.getInt("id"));
+        user.setName(result.getString("name"));
+        user.setLogin(result.getString("login"));
+        user.setPassword(result.getString("password"));
+
+        return user;
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return null;
+  }
+
   public void save(User user) {
     String sql = "insert into users (name, login, password) values (?,?,?)";
 
