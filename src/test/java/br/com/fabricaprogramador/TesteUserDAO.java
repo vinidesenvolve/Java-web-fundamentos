@@ -7,7 +7,7 @@ import java.util.List;
 public class TesteUserDAO {
 
   public static void main(String[] args) {
-    authUser();
+    findUsers();
   }
 
   private static void authUser() {
@@ -52,13 +52,13 @@ public class TesteUserDAO {
     UserDAO userDAO = new UserDAO();
     User user = userDAO.findById(2);
 
-    System.out.println(user.toString());
+    System.out.println(user);
   }
 
   private static void findUsers() {
     UserDAO userDAO = new UserDAO();
     List<User> users = userDAO.findAll();
 
-    users.stream().forEach(user -> System.out.println(user.getName()));
+    users.stream().forEach(user -> System.out.println(user));
   }
 }
