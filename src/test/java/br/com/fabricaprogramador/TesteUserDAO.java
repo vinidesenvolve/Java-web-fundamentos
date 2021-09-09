@@ -7,7 +7,17 @@ import java.util.List;
 public class TesteUserDAO {
 
   public static void main(String[] args) {
-    findUsers();
+    authUser();
+  }
+
+  private static void authUser() {
+    UserDAO userDAO = new UserDAO();
+    User user = new User();
+
+    user.setLogin("moza");
+    user.setPassword("1234");
+
+    System.out.println(userDAO.auth(user));
   }
 
   private static void saveUser() {
@@ -42,7 +52,7 @@ public class TesteUserDAO {
     UserDAO userDAO = new UserDAO();
     User user = userDAO.findById(2);
 
-    System.out.println(user.getName());
+    System.out.println(user.toString());
   }
 
   private static void findUsers() {
