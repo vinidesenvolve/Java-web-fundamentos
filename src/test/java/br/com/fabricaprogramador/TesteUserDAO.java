@@ -7,14 +7,14 @@ import java.util.List;
 public class TesteUserDAO {
 
   public static void main(String[] args) {
-    findUsers();
+    authUser();
   }
 
   private static void authUser() {
     UserDAO userDAO = new UserDAO();
     User user = new User();
 
-    user.setLogin("moza");
+    user.setLogin("mozar");
     user.setPassword("1234");
 
     System.out.println(userDAO.auth(user));
